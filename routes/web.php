@@ -22,3 +22,6 @@ Route::get('/', function () {
 Route::resource('/register', RegisterController::class);
 Route::resource('/login', LoginController::class);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('anggota', function () {
+    return view('anggota.dashboard');
+});
