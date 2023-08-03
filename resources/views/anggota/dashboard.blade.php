@@ -68,17 +68,17 @@
                   <h5 class="card-title">Profile Details</h5>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                    <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
                     <div class="col-lg-9 col-md-8">Kevin Anderson</div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Company</div>
+                    <div class="col-lg-3 col-md-4 label">Tempat Lahir</div>
                     <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Job</div>
+                    <div class="col-lg-3 col-md-4 label">Tanggal Lahir</div>
                     <div class="col-lg-9 col-md-8">Web Designer</div>
                   </div>
 
