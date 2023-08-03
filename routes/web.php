@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('admin.dashboard');
 });
+
+Route::resource('/register', RegisterController::class);
+Route::resource('/login', LoginController::class);
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
