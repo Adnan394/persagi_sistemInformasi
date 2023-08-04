@@ -19,6 +19,7 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'username' => 'required|max:255',
+            'role_id' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:8',
         ]);
@@ -30,10 +31,11 @@ class RegisterController extends Controller
         User::create([
             'name' => $request->name,
             'username' => $request->username,
+            'role_id' => $request->role_id,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('login');
+        return redirect()->route('login.index');
     }
 }
