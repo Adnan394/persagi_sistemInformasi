@@ -14,13 +14,15 @@ use App\Http\Controllers\auth\RegisterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('admin.dashboard');
+Route::prefix('/admin')->middleware('auth')->group(function() {
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    });
 });
 
 Route::resource('/register', RegisterController::class);
-Route::resource('/login', LoginController::class);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('anggota', function () {
     return view('anggota.dashboard');
