@@ -209,6 +209,12 @@
                         <li>
                             <a href="forms-elements.html">
                                 <i class="bi bi-circle"></i
+                                ><span>Akun Anggota</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="forms-elements.html">
+                                <i class="bi bi-circle"></i
                                 ><span>Data Anggota Persagi</span>
                             </a>
                         </li>
