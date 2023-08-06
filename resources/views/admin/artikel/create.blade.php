@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<main id="main">
     <div class="container">
         <div class="card">
             <div class="card-body">
@@ -18,4 +19,5 @@
             </div>
         </div>
     </div>
+</main>
 @endsection
