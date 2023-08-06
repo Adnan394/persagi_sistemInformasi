@@ -21,10 +21,15 @@ class LoginController extends Controller
  
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
+            if(Auth::user()->role_id == '1') {
+                return redirect('/admin');
+            }
+            if(Auth::user()->role_id == '2') {
+                return redirect('/anggota');
+            }
         }
- 
-        return "berhasil";
+
+        return redirect()->route('login');
     }
 
     public function logout()
