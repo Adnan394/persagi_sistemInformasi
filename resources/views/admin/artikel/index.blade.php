@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<main id="main">
     <div class="container mt-5">
         <div class="pagetitle">
             <div class="d-flex justify-content-between mx-2">
@@ -37,4 +38,5 @@
             </tbody>
         </table>
     </div>
+</main>
 @endsection

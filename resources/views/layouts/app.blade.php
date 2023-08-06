@@ -245,9 +245,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="tables-data.html">
+                            <a href="{{ route('artikel.index') }}">
                                 <i class="bi bi-circle"></i
-                                ><span>Data Blog</span>
+                                ><span>Data Artikel</span>
                             </a>
                         </li>
                     </ul>
