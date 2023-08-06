@@ -339,7 +339,9 @@
         <!-- End Header -->
 
         {{-- main  --}}
-        @yield('content')
+        <main id="main">
+            @yield('content')
+        </main>
         {{-- end main  --}}
 
         <!-- ======= Sidebar ======= -->
@@ -352,6 +354,13 @@
                     </a>
                 </li>
                 <!-- End Dashboard Nav -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('artikel.index') }}">
+                        <i class="bi bi-globe"></i>
+                        <span>Artikel</span>
+                    </a>
+                </li>
+                {{-- end artikel nav  --}}
 
                 <li class="nav-item">
                     <a
