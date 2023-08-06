@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\akunAnggotaController;
+use App\Http\Controllers\daftarAnggotaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,8 @@ Route::prefix('/admin')->middleware('auth')->group(function() {
     });
 
     Route::resource('artikel', ArtikelController::class);
+    Route::resource('akunAnggota', akunAnggotaController::class);
+    Route::resource('daftarAnggota', daftarAnggotaController::class);
 });
 
 Route::resource('/register', RegisterController::class);

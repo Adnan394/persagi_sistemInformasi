@@ -207,13 +207,13 @@
                         data-bs-parent="#sidebar-nav"
                     >
                         <li>
-                            <a href="forms-elements.html">
+                            <a href="{{ route('akunAnggota.index') }}">
                                 <i class="bi bi-circle"></i
                                 ><span>Akun Anggota</span>
                             </a>
                         </li>
                         <li>
-                            <a href="forms-elements.html">
+                            <a href="{{ route('daftarAnggota.index') }}">
                                 <i class="bi bi-circle"></i
                                 ><span>Data Anggota Persagi</span>
                             </a>
