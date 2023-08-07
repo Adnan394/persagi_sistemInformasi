@@ -24,11 +24,11 @@
                     <th scope="col">Gambar</th>
                     <th scope="col">Judul</th>
                     <th scope="col">Tanggal</th>
+                    <th scope="col">Jam</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
                     @foreach ($data as $d)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
@@ -36,14 +36,19 @@
                             <img src="{{ Storage::url($d->gambar) }}" alt="" width="80px">
                         </td>
                         <td>{{ $d->judul }}</td>
+                        <td>{{  \Carbon\Carbon::parse($d->tanggal)->format('D, d M Y') }}</td>
+                        <td>{{ $d->jam}}</td>
                         <td class="d-flex">
-                            <a href="" class="btn btn-primary">View</a>
-                            <a href="" class="btn btn-warning">Edit</a>
-                            <a href="" class="btn btn-danger">Delete</a>
+                            <a href="{{ route('event.show', $d->slug) }}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
+                            <a href="{{ route('event.edit', $d->id) }}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+                            <form action="{{ route('event.destroy', $d->id) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
-                </tr>
             </tbody>
         </table>
     </div>

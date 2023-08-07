@@ -7,6 +7,7 @@ use App\Models\event;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
+
 class EventController extends Controller
 {
     /**
@@ -62,7 +63,8 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = event::where('slug', $id)->first();
+        return view('admin.event.show', ['data' => $data]);
     }
 
     /**
@@ -73,7 +75,8 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = event::where('id', $id)->first();
+        return view('admin.event.edit', ['data' => $data]);
     }
 
     /**
@@ -85,8 +88,24 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $path = 'Gambar_Event'; 
+        $file = $request->file('gambar');
+        Storage::putFileAs($path, $file, $file->getClientOriginalName());
+
+        $data = [
+            'judul' => $request->judul,
+            'slug' => Str::slug($request->judul, '-'),
+            'deskripsi' => $request->deskripsi,
+            'gambar' => $path . "/" . $file->getClientOriginalName(),
+            'tanggal' => $request->tanggal,
+            'jam' => $request->jam,
+        ];
+
+        event::where('id', $id)->update($data);
+
+        return redirect()->route('event.index');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -96,6 +115,7 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        //
+        event::where('id', $id)->delete();
+        return redirect()->route('event.index');
     }
 }
