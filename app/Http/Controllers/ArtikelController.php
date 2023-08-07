@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\artikel;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ArtikelController extends Controller
 {
@@ -13,7 +16,8 @@ class ArtikelController extends Controller
      */
     public function index()
     {
-        return view('admin.artikel.index');
+        $data = artikel::all();
+        return view('admin.artikel.index', ['data' => $data]);
     }
 
     /**
@@ -34,7 +38,20 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        $path = 'Gambar_Artikel'; 
+        $file = $request->file('gambar');
+        Storage::putFileAs($path, $file, $file->getClientOriginalName());
+
+        artikel::create([
+            'judul' => $request->judul,
+            'slug' => Str::slug($request->judul, '-'),
+            'meta_judul' => $request->meta_judul,
+            'meta_deskripsi' => $request->meta_deskripsi,
+            'konten' => $request->konten,
+            'gambar' => $path . "/" . $file->getClientOriginalName(),
+        ]);
+
+        return redirect()->route('artikel.index');
     }
 
     /**

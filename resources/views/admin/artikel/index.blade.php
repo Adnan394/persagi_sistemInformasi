@@ -21,20 +21,26 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
+                    <th scope="col">Gambar</th>
+                    <th scope="col">Judul</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach ($data as $d)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>
+                        <img src="{{ Storage::url($d->gambar) }}" alt="">
+                    </td>
+                    <td>{{ $d->judul }}</td>
+                    <td class="d-flex">
+                        <a href="" class="btn btn-primary">View</a>
+                        <a href="" class="btn btn-warning">Edit</a>
+                        <a href="" class="btn btn-danger">Delete</a>
+                    </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
