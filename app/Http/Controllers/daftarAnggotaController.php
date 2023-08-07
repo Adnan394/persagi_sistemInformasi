@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\daftarAnggota;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -28,7 +29,8 @@ class DaftarAnggotaController extends Controller
      */
     public function create()
     {
-        return view('admin.daftarAnggota.create');
+        $user = User::where('role_id', 2)->get();
+        return view('admin.daftarAnggota.create', ['user' => $user]);
     }
 
     /**
@@ -71,7 +73,8 @@ class DaftarAnggotaController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = event::where($id)->first();
+        return view('admin.daftarAnggota.show', ['data' => $data]);
     }
 
     /**

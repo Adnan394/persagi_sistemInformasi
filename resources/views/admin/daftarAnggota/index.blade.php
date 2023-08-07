@@ -5,8 +5,8 @@
     <div class="container mt-5">
         <div class="pagetitle">
             <div class="d-flex justify-content-between mx-2">
-                <h1>Data Artikel</h1>
-                <a href="{{ route('daftarAnggota.create') }}" class="btn btn-primary">Tambah Artikel</a>
+                <h1>Data Anggota Persagi Karawang</h1>
+                <a href="{{ route('daftarAnggota.create') }}" class="btn btn-primary">Tambah Anggota</a>
             </div>
             <nav class="ms-2">
                 <ol class="breadcrumb">
