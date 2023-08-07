@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\event;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
-class AkunAnggotaController extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,8 @@ class AkunAnggotaController extends Controller
      */
     public function index()
     {
-        return view('admin.akunAnggota.index');
+        $data = event::all();
+        return view('admin.event.index', ['data' => $data]);
     }
 
     /**
@@ -23,8 +27,7 @@ class AkunAnggotaController extends Controller
      */
     public function create()
     {
-        //
-    }
+        return view('admin.event.create');    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +37,33 @@ class AkunAnggotaController extends Controller
      */
     public function store(Request $request)
     {
-        return view('admin.daftarAnggota.index');
+        // Validasi input sebelum menyimpan
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'tanggal' => 'required|date',
+            'waktu' => 'required|date_format:H:i',
+        ]);
+    
+        $path = 'Gambar_Event'; 
+        $file = $request->file('gambar');
+        Storage::putFileAs($path, $file, $file->getClientOriginalName());
+    
+        // Pastikan bahwa 'jam' memiliki nilai yang valid
+        $jam = $request->has('jam') ? $request->jam : null;
+    
+        // Simpan data event ke database
+        Event::create([
+            'judul' => $request->judul,
+            'slug' => Str::slug($request->judul, '-'),
+            'deskripsi' => $request->deskripsi,
+            'gambar' => $path . "/" . $file->getClientOriginalName(),
+            'tanggal' => $request->tanggal,
+            'jam' => $jam,
+        ]);
+    
+        return redirect()->route('event.index');
     }
 
     /**

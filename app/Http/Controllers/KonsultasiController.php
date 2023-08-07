@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AkunAnggotaController extends Controller
+class KonsultasiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class AkunAnggotaController extends Controller
      */
     public function index()
     {
-        return view('admin.akunAnggota.index');
+        return view('admin.konsultasi.index');
     }
 
     /**
@@ -34,7 +34,7 @@ class AkunAnggotaController extends Controller
      */
     public function store(Request $request)
     {
-        return view('admin.daftarAnggota.index');
+        //
     }
 
     /**
