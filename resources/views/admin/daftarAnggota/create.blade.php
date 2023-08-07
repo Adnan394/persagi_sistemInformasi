@@ -34,7 +34,12 @@
                         </div>
                         <div class="my-3">
                             <label for="#nama" class="form-label">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama" required>
+                            <select name="nama" class="form-control" required="required">
+                            @foreach ($user as $u)
+                                <option value="{{ $u->id }}">{{ $u->name }}</option>
+                            @endforeach
+                            </select>
+
                         </div>
                         <div class="mb-3">
                             <label for="#tempat-lahir" class="form-label">Tempat Lahir</label>
@@ -85,7 +90,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="#alamat-tinggal" class="form-label">Alamat Tempat Tinggal</label>
-                            <input type="text" class="form-control" id="alamat-tinggal" rows="3" name="alamat_tinggal" required></input>
+                            <input type="text" class="form-control" id="alamat-tinggal" rows="3"
+                                name="alamat_tinggal" required></input>
                         </div>
                         <div class="mb-3">
                             <button class="btn btn-primary" type="submit">Simpan</button>

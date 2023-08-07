@@ -16,6 +16,7 @@ class CreateDaftarAnggotasTable extends Migration
         Schema::create('daftar_anggotas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('gambar');
             $table->string('nama');
             $table->string('tempat_lahir');
