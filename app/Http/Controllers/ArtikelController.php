@@ -62,7 +62,8 @@ class ArtikelController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = artikel::where('slug', $id)->first();
+        return view('admin.artikel.show', ['data'=>$data]);
     }
 
     /**
@@ -71,9 +72,26 @@ class ArtikelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+        $data = artikel::where('id', $id)->first();
+        return view('admin.artikel.edit', ['data'=>$data]);
+        $path = 'Gambar_Artikel'; 
+        $file = $request->file('gambar');
+        Storage::putFileAs($path, $file, $file->getClientOriginalName());
+
+        $data = [
+            'judul' => $request->judul,
+            'slug' => Str::slug($request->judul, '-'),
+            'meta_judul' => $request->meta_judul,
+            'meta_deskripsi' => $request->meta_deskripsi,
+            'konten' => $request->konten,
+            'gambar' => $path . "/" . $file->getClientOriginalName(),
+        ];
+        
+        $data = artikel::where('id', $id)->update($data);
+
+        return redirect()->route('artikel.index');
     }
 
     /**
