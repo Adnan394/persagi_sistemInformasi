@@ -183,7 +183,7 @@
                         data-bs-parent="#sidebar-nav"
                     >
                         <li>
-                            <a href="components-alerts.html">
+                            <a href="{{ route('konsultasi.index') }}">
                                 <i class="bi bi-circle"></i><span>Data Konsultan</span>
                             </a>
                         </li>
@@ -245,7 +245,7 @@
                         data-bs-parent="#sidebar-nav"
                     >
                         <li>
-                            <a href="tables-general.html">
+                            <a href="{{ route('event.index') }}">
                                 <i class="bi bi-circle"></i
                                 ><span>Data Event</span>
                             </a>
