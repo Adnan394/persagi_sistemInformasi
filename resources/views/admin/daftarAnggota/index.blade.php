@@ -6,7 +6,7 @@
         <div class="pagetitle">
             <div class="d-flex justify-content-between mx-2">
                 <h1>Data Artikel</h1>
-                <a href="{{ route('artikel.create') }}" class="btn btn-primary">Tambah Artikel</a>
+                <a href="{{ route('daftarAnggota.create') }}" class="btn btn-primary">Tambah Artikel</a>
             </div>
             <nav class="ms-2">
                 <ol class="breadcrumb">
@@ -21,19 +21,27 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
+                    <th scope="col">Foto</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
+                    @foreach ($data as $d)
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>
+                            <img src="{{ Storage::url($d->gambar) }}" alt="" width="80px">
+                        </td>
+                        <td>{{ $d->nama }}</td>
+                        <td class="d-flex">
+                            <a href="" class="btn btn-primary">View</a>
+                            <a href="" class="btn btn-warning">Edit</a>
+                            <a href="" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    @endforeach
                 </tr>
             </tbody>
         </table>
