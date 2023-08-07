@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AkunAnggotaController extends Controller
@@ -13,7 +14,8 @@ class AkunAnggotaController extends Controller
      */
     public function index()
     {
-        return view('admin.akunAnggota.index');
+        $data = User::where('role_id', 2)->get();
+        return view('admin.akunAnggota.index', ['data' => $data]);
     }
 
     /**
@@ -68,7 +70,11 @@ class AkunAnggotaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $data = [
+        //     'is_active' => 1,
+        // ];
+        User::where('id', $id)->update(['is_active' => 1]);
+        return redirect()->route('akunAnggota.index');
     }
 
     /**
