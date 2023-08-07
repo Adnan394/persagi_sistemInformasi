@@ -56,6 +56,13 @@
                         <span class="d-none d-lg-block">Persagi Karawang</span>
                       </a>
                     </div><!-- End Logo -->
+                    {{-- error login  --}}
+                    @if (Session::has('login'))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ Session::get('login') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
       
                     <div class="card mb-3">
       
@@ -82,13 +89,6 @@
                             <input type="password" name="password" class="form-control" id="yourPassword" required>
                             <div class="invalid-feedback">Please enter your password!</div>
                           </div>
-      
-                          {{-- <div class="col-12">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                              <label class="form-check-label" for="rememberMe">Remember me</label>
-                            </div>
-                          </div> --}}
                           <div class="col-12 pt-2">
                             <button class="btn btn-primary w-100" type="submit">Login</button>
                           </div>

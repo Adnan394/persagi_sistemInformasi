@@ -21,22 +21,53 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Aktifasi</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach ($data as $d)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $d->name }}</td>
+                    <td>{{ $d->username }}</td>
+                    <td>{{ $d->email }}</td>
+                    <td><h6><span class="badge {{ ($d->is_active == 0) ? 'bg-danger' : 'bg-success' }}">{{ ($d->is_active == 0) ? 'Belum Aktif' : 'Aktif' }}</span></h6></td>
+                    <td>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aktifasi{{ $d->id }}" {{ ($d->is_active == 0) ? '' : 'disabled' }}><i class="bi bi-eye"></i></button>
+                    </td>
                 </tr>
+
+                {{-- modal Aktifasi  --}}
+                <div class="modal fade" id="aktifasi{{ $d->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <h4 class="px-5 text-center mb-5"><strong>Apakah Akan mengaktifkaan Akun ini?</strong></h4>
+                          <img src="{{ asset('assets/img/Check.png') }}" alt="" width="150px" class="d-block m-auto mb-5">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">Batal</button>
+                          <form action="{{ route('akunAnggota.update', $d->id) }}" method="POST">
+                            @method('PUT')
+                            @csrf
+                            <button class="btn btn-primary" type="submit">Lanjutkan</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                @endforeach
             </tbody>
         </table>
+
+
     </div>
 </main>
 @endsection
