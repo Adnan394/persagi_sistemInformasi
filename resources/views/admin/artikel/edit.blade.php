@@ -27,7 +27,8 @@
         </div>
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('artikel.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('artikel.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
                     <div class="my-3">
                         <label for="#title" class="form-label">Judul Artikel</label>

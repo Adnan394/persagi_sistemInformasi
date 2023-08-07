@@ -36,10 +36,16 @@
                     </td>
                     <td>{{ $d->judul }}</td>
                     <td>{{ \Carbon\Carbon::parse($d->created_at)->format('D, d M Y') }}</td>
-                    <td class="d-flex">
-                        <a href="{{ route('artikel.show', $d->slug) }}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-                        <a href="{{ route('artikel.edit', $d->id) }}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
-                        <a href="" class="btn btn-danger"><i class="bi bi-trash3"></i></a>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('artikel.show', $d->slug) }}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
+                            <a href="{{ route('artikel.edit', $d->id) }}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+                            <form action="{{ route('artikel.destroy', $d->id) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @endforeach
