@@ -7,6 +7,7 @@ use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\akunAnggotaController;
 use App\Http\Controllers\daftarAnggotaController;
 use App\Http\Controllers\KonsultasiController;
+use App\Http\Controllers\UserAnggotaController;
 use App\Http\Controllers\EventController;
 
 /*
@@ -30,6 +31,7 @@ Route::prefix('/admin')->middleware('auth')->group(function() {
     Route::resource('konsultasi', KonsultasiController::class);
     Route::resource('event', EventController::class);    
 });
+Route::resource('userAnggota', UserAnggotaController::class);
 
 Route::resource('/register', RegisterController::class);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
