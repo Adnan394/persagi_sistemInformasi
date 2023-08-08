@@ -120,6 +120,7 @@
                             <form action="{{ route('daftarAnggota.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
+                                <input type="hidden" name="user_id" value="{{ $data->user_id }}">
                                 <div class="row mb-3">
                                     <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
                                         Image</label>
