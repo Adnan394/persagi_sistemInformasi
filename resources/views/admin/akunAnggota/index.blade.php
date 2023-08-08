@@ -38,7 +38,7 @@
                     <td>
                         <div class="d-flex gap-2">
                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aktifasi{{ $d->id }}" {{ ($d->is_active == 0) ? '' : 'disabled' }}><i class="bi bi-check2-circle"></i></button>
-                        <form action="{{ route('daftarAnggota.destroy', $d->id) }}" method="POST">
+                        <form action="{{ route('akunAnggota.destroy', $d->id) }}" method="POST">
                             @method('DELETE')
                             @csrf
                             <button type="submit" class="btn btn-danger"><i class="bi bi-trash3"></i></button>

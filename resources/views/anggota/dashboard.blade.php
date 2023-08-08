@@ -15,7 +15,5 @@
     <!-- End Page Title -->
 
   <x-profile :id="Auth::user()->id"/>
-
-
 </main>
 @endsection
