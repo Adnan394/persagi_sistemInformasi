@@ -99,16 +99,14 @@ class DaftarAnggotaController extends Controller
      */
     public function update(Request $request, $id)
 {
-    return $request->all();
     $path = 'Gambar_daftarAnggota'; 
     $file = $request->file('gambar');
     Storage::putFileAs($path, $file, $file->getClientOriginalName());
 
-    $user = User::findOrFail($request->user_id);
     $data = [
-        'user_id' => $user->id,
+        'user_id' => $request->user_id,
         'gambar' => $path . "/" . $file->getClientOriginalName(),
-        'nama' => $user->name,
+        'nama' => $request->nama,
         'tempat_lahir' => $request->tempat_lahir,
         'tanggal_lahir' => $request->tanggal_lahir,
         'agama' => $request->agama,
@@ -123,7 +121,9 @@ class DaftarAnggotaController extends Controller
         'alamat_tinggal' => $request->alamat_tinggal,
     ];
 
+    // return $data;
     daftarAnggota::where('id', $id)->update($data);
+    User::where('id', $request->user_id)->update(['name' => $request->nama]);
     return redirect()->route('daftarAnggota.show', $id);
 }
 
