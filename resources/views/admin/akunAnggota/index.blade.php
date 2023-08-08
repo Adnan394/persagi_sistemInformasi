@@ -20,30 +20,16 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-<<<<<<< Updated upstream
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
-=======
                     <th scope="col">Nama</th>
                     <th scope="col">Username</th>
                     <th scope="col">Email</th>
                     <th scope="col">Status</th>
                     <th scope="col">Opsi</th>
->>>>>>> Stashed changes
                 </tr>
             </thead>
             <tbody>
+                @foreach ($data as $d)
                 <tr>
-<<<<<<< Updated upstream
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                </tr>
-=======
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $d->name }}</td>
                     <td>{{ $d->username }}</td>
@@ -60,7 +46,6 @@
                     </div>
                     </td>
                 </tr>
-
                 {{-- modal Aktifasi  --}}
                 <div class="modal fade" id="aktifasi{{ $d->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -84,9 +69,10 @@
                     </div>
                 </div>
                 @endforeach
->>>>>>> Stashed changes
             </tbody>
         </table>
+
+
     </div>
 </main>
 @endsection

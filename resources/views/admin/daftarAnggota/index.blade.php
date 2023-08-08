@@ -27,7 +27,6 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
                     @foreach ($data as $d)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
@@ -35,6 +34,7 @@
                             <img src="{{ Storage::url($d->gambar) }}" alt="" width="80px" class="rounded rounded-circle">
                         </td>
                         <td>{{ $d->nama }}</td>
+                        
                         <td class="d-flex">
                             <a href="{{ route('daftarAnggota.show', $d->id) }}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
                             {{-- <a href="" class="btn btn-warning">Edit</a> --}}
@@ -46,7 +46,6 @@
                         </td>
                     </tr>
                     @endforeach
-                </tr>
             </tbody>
         </table>
     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -18,6 +19,11 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
+
+        $isActive = User::where('email', $request->email)->first();
+        if ($isActive->is_active == 0) {
+            return redirect()->route('login')->with('login', 'Akun anda belum aktif, Silakan hubungi Admin!');
+        }
  
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
