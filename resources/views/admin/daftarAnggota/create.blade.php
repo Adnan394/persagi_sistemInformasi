@@ -13,6 +13,7 @@
             <div class="pagetitle">
                 <div class="d-flex justify-content-between mx-2">
                     <h1>Tambah Anggota</h1>
+                    <a href="{{ route('daftarAnggota.index') }}" class="btn btn-secondary">Kembali</a>
                 </div>
                 <nav class="ms-2">
                     <ol class="breadcrumb">
@@ -34,7 +35,7 @@
                         </div>
                         <div class="my-3">
                             <label for="#nama" class="form-label">Nama</label>
-                            <select name="nama" class="form-control" required="required">
+                            <select name="user_id" class="form-control" required="required">
                             @foreach ($user as $u)
                                 <option value="{{ $u->id }}">{{ $u->name }}</option>
                             @endforeach

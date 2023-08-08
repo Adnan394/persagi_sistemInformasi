@@ -32,13 +32,17 @@
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>
-                            <img src="{{ Storage::url($d->gambar) }}" alt="" width="80px">
+                            <img src="{{ Storage::url($d->gambar) }}" alt="" width="80px" class="rounded rounded-circle">
                         </td>
                         <td>{{ $d->nama }}</td>
                         <td class="d-flex">
-                            <a href="" class="btn btn-primary">View</a>
-                            <a href="" class="btn btn-warning">Edit</a>
-                            <a href="" class="btn btn-danger">Delete</a>
+                            <a href="{{ route('daftarAnggota.show', $d->id) }}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
+                            {{-- <a href="" class="btn btn-warning">Edit</a> --}}
+                            <form action="{{ route('daftarAnggota.destroy', $d->id) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
+                        </form>
                         </td>
                     </tr>
                     @endforeach

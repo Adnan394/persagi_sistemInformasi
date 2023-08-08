@@ -41,13 +41,15 @@ class DaftarAnggotaController extends Controller
      */
     public function store(Request $request)
     {
-        $path = 'Gambar_Event'; 
+        $path = 'Gambar_daftarAnggota'; 
         $file = $request->file('gambar');
         Storage::putFileAs($path, $file, $file->getClientOriginalName());
 
+        $user = User::findOrFail($request->user_id);
         daftarAnggota::create([
+            'user_id' =>$user->id,
             'gambar' => $path . "/" . $file->getClientOriginalName(),
-            'nama' => $request->nama,
+            'nama' => $user->name,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'agama' => $request->agama,
@@ -73,7 +75,7 @@ class DaftarAnggotaController extends Controller
      */
     public function show($id)
     {
-        $data = event::where($id)->first();
+        $data = daftarAnggota::find($id);
         return view('admin.daftarAnggota.show', ['data' => $data]);
     }
 
@@ -96,9 +98,35 @@ class DaftarAnggotaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
-    }
+{
+    return $request->all();
+    $path = 'Gambar_daftarAnggota'; 
+    $file = $request->file('gambar');
+    Storage::putFileAs($path, $file, $file->getClientOriginalName());
+
+    $user = User::findOrFail($request->user_id);
+    $data = [
+        'user_id' => $user->id,
+        'gambar' => $path . "/" . $file->getClientOriginalName(),
+        'nama' => $user->name,
+        'tempat_lahir' => $request->tempat_lahir,
+        'tanggal_lahir' => $request->tanggal_lahir,
+        'agama' => $request->agama,
+        'nik' => $request->nik,
+        'pendidikan_terakhir' => $request->pendidikan_terakhir,
+        'no_kta' => $request->no_kta,
+        'no_str' => $request->no_str,
+        'tempat_kerja_1' => $request->tempat_kerja_1,
+        'alamat_tempat_kerja_1' => $request->alamat_tempat_kerja_1,
+        'tempat_kerja_2' => $request->tempat_kerja_2,
+        'alamat_tempat_kerja_2' => $request->alamat_tempat_kerja_2,
+        'alamat_tinggal' => $request->alamat_tinggal,
+    ];
+
+    daftarAnggota::where('id', $id)->update($data);
+    return redirect()->route('daftarAnggota.show', $id);
+}
+
 
     /**
      * Remove the specified resource from storage.
@@ -108,6 +136,7 @@ class DaftarAnggotaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        daftarAnggota::where('id', $id)->delete();
+        return redirect()->route('daftarAnggota.index');
     }
 }

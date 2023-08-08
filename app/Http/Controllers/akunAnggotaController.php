@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 class AkunAnggotaController extends Controller
 {
     /**
@@ -79,6 +80,7 @@ class AkunAnggotaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::where('id', $id)->delete();
+        return redirect()->route('akunAnggota.index');
     }
 }
