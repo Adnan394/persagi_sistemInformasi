@@ -13,7 +13,7 @@
         <div class="pagetitle">
             <div class="d-flex justify-content-between mx-2">
                 <h1>Edit Event</h1>
-                <a href="{{ route('event.index') }}" class="btn btn-secondary">Kembali</a>
+                <a href="{{ route('daftarAnggota.index') }}" class="btn btn-secondary">Kembali</a>
             </div>
             <nav class="ms-2">
                 <ol class="breadcrumb">
