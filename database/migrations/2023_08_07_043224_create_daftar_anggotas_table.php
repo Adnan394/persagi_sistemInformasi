@@ -17,6 +17,7 @@ class CreateDaftarAnggotasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('status')->default(0);
             $table->string('gambar');
             $table->string('nama');
             $table->string('tempat_lahir');
