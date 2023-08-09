@@ -392,7 +392,11 @@
 
                         <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
                             <!-- Profile Edit Form -->
-                            <form action="{{ route('daftarAnggota.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+                            @if ($data->user_id == Auth::user()->id)
+                            <form action="{{ route('userAnggota.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+                            @else
+                                <form action="{{ route('daftarAnggota.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+                            @endif
                                 @method('PUT')
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{ $data->user_id }}">
@@ -400,7 +404,7 @@
                                     <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
                                         Image</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <img src="{{ Storage::url($data->gambar) }}" alt="Profile">
+                                        <img src="{{ Storage::url($data->gambar) }}" alt="Profile" class="rounded-circle">
                                         <div class="pt-2">
                                             <input type="file" class="form-control" id="meta-deskripsi"
                                                 name="gambar" required>
@@ -413,7 +417,7 @@
                                         Lengkap</label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="nama" type="text" class="form-control"
-                                            id="nama"placeholder="{{ $data->nama }}">
+                                            id="nama"  value="{{ $data->nama }} ">
                                     </div>
                                 </div>
 
@@ -422,7 +426,7 @@
                                         Lahir</label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="tempat_lahir" type="text" class="form-control"
-                                            id="tempat_lahir"placeholder="{{ $data->tempat_lahir }}">
+                                            id="tempat_lahir" value="{{ $data->tempat_lahir }}">
                                     </div>
                                 </div>
 
@@ -431,7 +435,7 @@
                                         class="col-md-4 col-lg-3 col-form-label">Tanggal Lahir</label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="tanggal_lahir" type="date" class="form-control"
-                                            id="tanggal_lahir"placeholder="{{ $data->tanggal_lahir }}">
+                                            id="tanggal_lahir" value="{{ $data->tanggal_lahir }}">
                                     </div>
                                 </div>
 
@@ -440,7 +444,7 @@
                                         class="col-md-4 col-lg-3 col-form-label">Agama</label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="agama" type="text" class="form-control"
-                                            id="agama"placeholder="{{ $data->agama }}">
+                                            id="agama" value="{{ $data->agama }}">
                                     </div>
                                 </div>
 
@@ -448,7 +452,7 @@
                                     <label for="#nik" class="col-md-4 col-lg-3 col-form-label">NIK</label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="nik" type="number" class="form-control"
-                                            id="nik"placeholder="{{ $data->nik }}">
+                                            id="nik" value="{{ $data->nik }}">
                                     </div>
                                 </div>
 
@@ -458,7 +462,7 @@
                                     <div class="col-md-8 col-lg-9">
                                         <input name="pendidikan_terakhir" type="text" class="form-control"
                                             id="pendidikan_terakhir"
-                                           placeholder="{{ $data->pendidikan_terakhir }}">
+                                            value="{{ $data->pendidikan_terakhir }}">
                                     </div>
                                 </div>
 
@@ -467,7 +471,7 @@
                                         KTA</label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="no_kta" type="text" class="form-control"
-                                            id="no_kta"placeholder="{{ $data->no_kta }}">
+                                            id="no_kta" value="{{ $data->no_kta }}">
                                     </div>
                                 </div>
 
@@ -476,7 +480,7 @@
                                         STR</label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="no_str" type="text" class="form-control"
-                                            id="no_str"placeholder="{{ $data->no_str }}">
+                                            id="no_str" value="{{ $data->no_str }}">
                                     </div>
                                 </div>
 
@@ -485,7 +489,7 @@
                                         class="col-md-4 col-lg-3 col-form-label">Tempat Kerja 1</label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="tempat_kerja_1" type="text" class="form-control"
-                                            id="tempat_kerja_1"placeholder="{{ $data->tempat_kerja_1 }}">
+                                            id="tempat_kerja_1" value="{{ $data->tempat_kerja_1 }}">
                                     </div>
                                 </div>
 
@@ -495,7 +499,7 @@
                                     <div class="col-md-8 col-lg-9">
                                         <input name="alamat_tempat_kerja_1" type="text"
                                             class="form-control" id="alamat_tempat_kerja_1"
-                                           placeholder="{{ $data->alamat_tempat_kerja_1 }}">
+                                            value="{{ $data->alamat_tempat_kerja_1 }}">
                                     </div>
                                 </div>
 
@@ -504,7 +508,7 @@
                                         class="col-md-4 col-lg-3 col-form-label">Tempat Kerja 2</label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="tempat_kerja_2" type="text" class="form-control"
-                                            id="tempat_kerja_2"placeholder="{{ $data->tempat_kerja_2 }}">
+                                            id="tempat_kerja_2" value="{{ $data->tempat_kerja_2 }}">
                                     </div>
                                 </div>
 
@@ -514,7 +518,7 @@
                                     <div class="col-md-8 col-lg-9">
                                         <input name="alamat_tempat_kerja_2" type="text"
                                             class="form-control" id="alamat_tempat_kerja_2"
-                                           placeholder="{{ $data->alamat_tempat_kerja_2 }}">
+                                            value="{{ $data->alamat_tempat_kerja_2 }}">
                                     </div>
                                 </div>
 
@@ -523,7 +527,7 @@
                                         class="col-md-4 col-lg-3 col-form-label">Alamat Tempat Tinggal</label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="alamat_tinggal" type="text" class="form-control"
-                                            id="alamat_tinggal"placeholder="{{ $data->alamat_tinggal }}">
+                                            id="alamat_tinggal" value="{{ $data->alamat_tinggal }}">
                                     </div>
                                 </div>
 
@@ -540,39 +544,35 @@
 
                         <div class="tab-pane fade pt-3" id="profile-change-password">
                             <!-- Change Password Form -->
-                            <form>
-
+                            {{-- <form action="{{ route('password.update') }}" method="POST"> --}}
+                                @csrf
+                            
                                 <div class="row mb-3">
-                                    <label for="currentPassword"
-                                        class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                                    <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Password Saat Ini</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="password" type="password" class="form-control"
-                                            id="currentPassword">
+                                        <input name="currentPassword" type="password" class="form-control" id="currentPassword">
                                     </div>
                                 </div>
-
+                            
                                 <div class="row mb-3">
-                                    <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New
-                                        Password</label>
+                                    <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Password Baru</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="newpassword" type="password" class="form-control"
-                                            id="newPassword">
+                                        <input name="newpassword" type="password" class="form-control" id="newPassword">
                                     </div>
                                 </div>
-
+                            
                                 <div class="row mb-3">
-                                    <label for="renewPassword"
-                                        class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                                    <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Ulangi Password Baru</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="renewpassword" type="password" class="form-control"
-                                            id="renewPassword">
+                                        <input name="newpassword_confirmation" type="password" class="form-control" id="renewPassword">
                                     </div>
                                 </div>
-
+                            
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                    <button type="submit" class="btn btn-primary">Ubah Password</button>
                                 </div>
-                            </form><!-- End Change Password Form -->
+                            </form>
+                            
 
                         </div>
 
