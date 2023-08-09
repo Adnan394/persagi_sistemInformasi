@@ -95,34 +95,34 @@ class userAnggotaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-{
-    return $request->all();
-    $path = 'Gambar_userAnggota'; 
-    $file = $request->file('gambar');
-    Storage::putFileAs($path, $file, $file->getClientOriginalName());
-
-    $user = User::findOrFail($request->user_id);
-    $data = [
-        'user_id' => $user->id,
-        'gambar' => $path . "/" . $file->getClientOriginalName(),
-        'nama' => $user->name,
-        'tempat_lahir' => $request->tempat_lahir,
-        'tanggal_lahir' => $request->tanggal_lahir,
-        'agama' => $request->agama,
-        'nik' => $request->nik,
-        'pendidikan_terakhir' => $request->pendidikan_terakhir,
-        'no_kta' => $request->no_kta,
-        'no_str' => $request->no_str,
-        'tempat_kerja_1' => $request->tempat_kerja_1,
-        'alamat_tempat_kerja_1' => $request->alamat_tempat_kerja_1,
-        'tempat_kerja_2' => $request->tempat_kerja_2,
-        'alamat_tempat_kerja_2' => $request->alamat_tempat_kerja_2,
-        'alamat_tinggal' => $request->alamat_tinggal,
-    ];
-
-    userAnggota::where('id', $id)->update($data);
-    return redirect()->route('userAnggota.show', $id);
-}
+    {
+        $path = 'Gambar_daftarAnggota'; 
+        $file = $request->file('gambar');
+        Storage::putFileAs($path, $file, $file->getClientOriginalName());
+    
+        $data = [
+            'user_id' => $request->user_id,
+            'gambar' => $path . "/" . $file->getClientOriginalName(),
+            'nama' => $request->nama,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'agama' => $request->agama,
+            'nik' => $request->nik,
+            'pendidikan_terakhir' => $request->pendidikan_terakhir,
+            'no_kta' => $request->no_kta,
+            'no_str' => $request->no_str,
+            'tempat_kerja_1' => $request->tempat_kerja_1,
+            'alamat_tempat_kerja_1' => $request->alamat_tempat_kerja_1,
+            'tempat_kerja_2' => $request->tempat_kerja_2,
+            'alamat_tempat_kerja_2' => $request->alamat_tempat_kerja_2,
+            'alamat_tinggal' => $request->alamat_tinggal,
+        ];
+    
+        // return $data;
+        daftarAnggota::where('id', $id)->update($data);
+        User::where('id', $request->user_id)->update(['name' => $request->nama]);
+        return redirect()->route('daftarAnggota.show', $id);
+    }
 
 
     /**

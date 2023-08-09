@@ -21,21 +21,23 @@ class LoginController extends Controller
         ]);
 
         $isActive = User::where('email', $request->email)->first();
-        if ($isActive->is_active == 0) {
+        if (!$isActive) {
+            return redirect()->route('login')->with('login', 'Email tidak terdaftar.');
+        } elseif ($isActive->is_active == 0) {
             return redirect()->route('login')->with('login', 'Akun anda belum aktif, Silakan hubungi Admin!');
         }
- 
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            if(Auth::user()->role_id == '1') {
+            if (Auth::user()->role_id == '1') {
                 return redirect('/admin');
             }
-            if(Auth::user()->role_id == '2') {
+            if (Auth::user()->role_id == '2') {
                 return redirect('/anggota');
             }
         }
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('login', 'Email atau password salah.');
     }
 
     public function logout()
