@@ -396,7 +396,7 @@
                             <form action="{{ route('userAnggota.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                             @else
                                 <form action="{{ route('daftarAnggota.update', $data->id) }}" method="POST" enctype="multipart/form-data">
-                            @endif
+                            @endif  
                                 @method('PUT')
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{ $data->user_id }}">
@@ -533,10 +533,12 @@
 
                                 <div class="row mb-3">
                                     <label for="status" class="col-md-4 col-lg-3 col-form-label">Status Amggota</label>
+                                    <div class="col-md-8 col-lg-9">
                                         <select name="status" class="form-control" required="required">
-                                                <option value="0">Anggota Baru</option>
-                                                <option value="1">Anggota Lama</option>
-                                            </select>
+                                            <option value="0">Anggota Baru</option>
+                                            <option value="1">Anggota Lama</option>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div class="text-center">
@@ -550,18 +552,22 @@
 
                         </div>
 
-                        <div class="tab-pane fade pt-3" id="profile-change-password">
+                        <div class="tab-pane active fade pt-3" id="profile-change-password">
+                            @if (Session::has('login'))
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                {{ Session::get('login') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            @endif
                             <!-- Change Password Form -->
-                            {{-- <form action="{{ route('password.update') }}" method="POST"> --}}
+                            <form action="{{ route('login.change') }}" method="POST">
+                                @method('PUT')
                                 @csrf
-                            
-                                <div class="row mb-3">
-                                    <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Password Saat Ini</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="currentPassword" type="password" class="form-control" id="currentPassword">
-                                    </div>
-                                </div>
-                            
+                                @if ($data->user_id == Auth::user()->id)
+                                <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+                                @else
+                                <input type="hidden" name="id" value="{{ $data->user_id }}">
+                                @endif
                                 <div class="row mb-3">
                                     <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Password Baru</label>
                                     <div class="col-md-8 col-lg-9">

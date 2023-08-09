@@ -75,12 +75,19 @@
                             class="rounded-circle"
                         />
                         @else
-                        <img
-                            src="{{ Storage::url(Auth::user()->daftar_anggotas->gambar) }}"
-                            alt="Profile"
-                            class="rounded-circle"
-                        />
-
+                            @if (\App\Models\daftarAnggota::where('user_id', Auth::user()->id)->first())
+                                <img
+                                    src="{{ Storage::url(Auth::user()->daftar_anggotas->gambar) }}"
+                                    alt="Profile"
+                                    class="rounded-circle"
+                                />  
+                            @else
+                                <img
+                                src="{{ asset('assets/img/defaultpp.jpeg') }}"
+                                alt="Profile"
+                                class="rounded-circle"
+                                />
+                            @endif
                         @endif
                             <span class="d-none d-md-block dropdown-toggle ps-2"
                                 >{{ Auth::user()->name }}</span

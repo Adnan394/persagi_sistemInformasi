@@ -33,13 +33,14 @@ Route::prefix('/admin')->middleware('auth')->group(function() {
     Route::resource('daftarAnggota', DaftarAnggotaController::class);
     Route::resource('konsultasi', KonsultasiController::class);
     Route::resource('event', EventController::class);    
-    Route::resource('changePassword', ChangePasswordController::class);
+    // Route::resource('changePassword', ChangePasswordController::class);
 });
 Route::resource('userAnggota', UserAnggotaController::class);
 
 Route::resource('/register', RegisterController::class);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+Route::put('/changePassword', [LoginController::class, 'change'])->name('login.change');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('anggota', function () {
     return view('anggota.dashboard');

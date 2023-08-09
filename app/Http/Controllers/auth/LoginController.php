@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\auth;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
@@ -47,5 +48,15 @@ class LoginController extends Controller
         Auth::logout();
 
         return redirect('login');
+    }
+
+    public function change(Request $request) {
+        if ($request->newpassword != $request->newpassword_confirmation) {
+            return redirect()->back()->with('login', 'Konfirmasi Password Salah!');
+        }
+
+       if (User::where('id', $request->id)->update(['password' => Hash::make($request->newpassword)])) {
+        return redirect()->back();
+       };
     }
 }
