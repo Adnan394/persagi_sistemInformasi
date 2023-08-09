@@ -35,18 +35,10 @@
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center"
                                     >
-                                        <i class="bi bi-cart"></i>
+                                        <i class="bi bi-person-lines-fill"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>145</h6>
-                                        <span
-                                            class="text-success small pt-1 fw-bold"
-                                            >12%</span
-                                        >
-                                        <span
-                                            class="text-muted small pt-2 ps-1"
-                                            >increase</span
-                                        >
+                                        <h6>{{ \App\Models\daftarAnggota::where('status', 1)->count() }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -67,18 +59,10 @@
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center"
                                     >
-                                        <i class="bi bi-cart"></i>
+                                        <i class="bi bi-person-lines-fill"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>145</h6>
-                                        <span
-                                            class="text-success small pt-1 fw-bold"
-                                            >12%</span
-                                        >
-                                        <span
-                                            class="text-muted small pt-2 ps-1"
-                                            >increase</span
-                                        >
+                                        <h6>{{ \App\Models\daftarAnggota::where('status', 0)->count() }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -99,18 +83,10 @@
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center"
                                     >
-                                        <i class="bi bi-cart"></i>
+                                        <i class="bi bi-person-lines-fill"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>145</h6>
-                                        <span
-                                            class="text-success small pt-1 fw-bold"
-                                            >12%</span
-                                        >
-                                        <span
-                                            class="text-muted small pt-2 ps-1"
-                                            >increase</span
-                                        >
+                                        <h6>{{ \App\Models\daftarAnggota::all()->count() }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -135,19 +111,11 @@
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center"
                                     >
                                         <i
-                                            class="bi bi-currency-dollar"
+                                            class="bi bi-clipboard2-pulse"
                                         ></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>$3,264</h6>
-                                        <span
-                                            class="text-success small pt-1 fw-bold"
-                                            >8%</span
-                                        >
-                                        <span
-                                            class="text-muted small pt-2 ps-1"
-                                            >increase</span
-                                        >
                                     </div>
                                 </div>
                             </div>
@@ -169,19 +137,11 @@
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center"
                                     >
                                         <i
-                                            class="bi bi-currency-dollar"
+                                            class="bi bi-clipboard2-pulse"
                                         ></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>$3,264</h6>
-                                        <span
-                                            class="text-success small pt-1 fw-bold"
-                                            >8%</span
-                                        >
-                                        <span
-                                            class="text-muted small pt-2 ps-1"
-                                            >increase</span
-                                        >
                                     </div>
                                 </div>
                             </div>
@@ -203,124 +163,70 @@
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center"
                                     >
                                         <i
-                                            class="bi bi-currency-dollar"
+                                            class="bi bi-clipboard2-pulse"
                                         ></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>$3,264</h6>
-                                        <span
-                                            class="text-success small pt-1 fw-bold"
-                                            >8%</span
-                                        >
-                                        <span
-                                            class="text-muted small pt-2 ps-1"
-                                            >increase</span
-                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- data artikel --}}
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card revenue-card">
+                            <div class="filter">
+
+                            </div>
+
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Total Semua Artikel
+                                </h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div
+                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                    >
+                                        <i
+                                            class="bi bi-globe"
+                                        ></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{ \App\Models\artikel::all()->count() }}</h6></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card revenue-card">
+                            <div class="filter">
+
+                            </div>
+
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Total Semua Event
+                                </h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div
+                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                    >
+                                        <i
+                                            class="bi bi-calendar-event"
+                                        ></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{ \App\Models\event::all()->count() }}</h6></h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- End Revenue Card -->
-
-                    <!-- Customers Card -->
-                    <div class="col-xxl-4 col-xl-12">
-                        <div class="card info-card customers-card">
-                            <div class="filter">
-
-                            </div>
-
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Customers <span>| This Year</span>
-                                </h5>
-
-                                <div class="d-flex align-items-center">
-                                    <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center"
-                                    >
-                                        <i class="bi bi-people"></i>
-                                    </div>
-                                    <div class="ps-3">
-                                        <h6>1244</h6>
-                                        <span
-                                            class="text-danger small pt-1 fw-bold"
-                                            >12%</span
-                                        >
-                                        <span
-                                            class="text-muted small pt-2 ps-1"
-                                            >decrease</span
-                                        >
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-4 col-xl-12">
-                        <div class="card info-card customers-card">
-                            <div class="filter">
-
-                            </div>
-
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Customers <span>| This Year</span>
-                                </h5>
-
-                                <div class="d-flex align-items-center">
-                                    <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center"
-                                    >
-                                        <i class="bi bi-people"></i>
-                                    </div>
-                                    <div class="ps-3">
-                                        <h6>1244</h6>
-                                        <span
-                                            class="text-danger small pt-1 fw-bold"
-                                            >12%</span
-                                        >
-                                        <span
-                                            class="text-muted small pt-2 ps-1"
-                                            >decrease</span
-                                        >
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-4 col-xl-12">
-                        <div class="card info-card customers-card">
-                            <div class="filter">
-
-                            </div>
-
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Customers <span>| This Year</span>
-                                </h5>
-
-                                <div class="d-flex align-items-center">
-                                    <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center"
-                                    >
-                                        <i class="bi bi-people"></i>
-                                    </div>
-                                    <div class="ps-3">
-                                        <h6>1244</h6>
-                                        <span
-                                            class="text-danger small pt-1 fw-bold"
-                                            >12%</span
-                                        >
-                                        <span
-                                            class="text-muted small pt-2 ps-1"
-                                            >decrease</span
-                                        >
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Customers Card -->
                 </div>
             </div>
             <!-- End Left side columns -->
