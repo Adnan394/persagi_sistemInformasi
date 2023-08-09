@@ -49,7 +49,7 @@
         <header id="header" class="header fixed-top d-flex align-items-center">
             <div class="d-flex align-items-center justify-content-between">
                 <a href="index.html" class="logo d-flex align-items-center">
-                    <img src="assets/img/logo.png" alt="" />
+                    <img src="" alt="" />
                     <span class="d-none d-lg-block">Persagi Karawang</span>
                 </a>
                 <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -57,7 +57,6 @@
             <!-- End Logo -->
 
             <nav class="header-nav ms-auto">
-                @if(Auth::user()->role_id != 1)
                 <ul class="d-flex align-items-center">
                     <li class="nav-item d-block d-lg-none">
                     </li>
@@ -69,13 +68,22 @@
                             href="#"
                             data-bs-toggle="dropdown"
                         >
-                            <img
-                                src="assets/img/profile-img.jpg"
-                                alt="Profile"
-                                class="rounded-circle"
-                            />
+                        @if (Auth::user()->role_id == 1)
+                        <img
+                            src="{{ asset('assets/img/defaultpp.jpeg') }}"
+                            alt="Profile"
+                            class="rounded-circle"
+                        />
+                        @else
+                        <img
+                            src="{{ Storage::url(Auth::user()->daftar_anggotas->gambar) }}"
+                            alt="Profile"
+                            class="rounded-circle"
+                        />
+
+                        @endif
                             <span class="d-none d-md-block dropdown-toggle ps-2"
-                                >K. Anderson</span
+                                >{{ Auth::user()->name }}</span
                             > </a
                         ><!-- End Profile Iamge Icon -->
 
@@ -83,56 +91,17 @@
                             class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
                         >
                             <li class="dropdown-header">
-                                <h6>Kevin Anderson</h6>
-                                <span>Web Designer</span>
+                                <h6>{{ Auth::user()->name }}</h6>
+                                <span>{{ Auth::user()->username }}</span>
                             </li>
-                            <li>
+                            <li> 
                                 <hr class="dropdown-divider" />
                             </li>
 
                             <li>
                                 <a
                                     class="dropdown-item d-flex align-items-center"
-                                    href="users-profile.html"
-                                >
-                                    <i class="bi bi-person"></i>
-                                    <span>My Profile</span>
-                                </a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-
-                            <li>
-                                <a
-                                    class="dropdown-item d-flex align-items-center"
-                                    href="users-profile.html"
-                                >
-                                    <i class="bi bi-gear"></i>
-                                    <span>Account Settings</span>
-                                </a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-
-                            <li>
-                                <a
-                                    class="dropdown-item d-flex align-items-center"
-                                    href="pages-faq.html"
-                                >
-                                    <i class="bi bi-question-circle"></i>
-                                    <span>Need Help?</span>
-                                </a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-
-                            <li>
-                                <a
-                                    class="dropdown-item d-flex align-items-center"
-                                    href="#"
+                                    href="{{ route('logout') }}"
                                 >
                                     <i class="bi bi-box-arrow-right"></i>
                                     <span>Sign Out</span>
@@ -143,9 +112,6 @@
                     </li>
                     <!-- End Profile Nav -->
                 </ul>
-                @endif
-
-
             </nav>
             <!-- End Icons Navigation -->
         </header>
@@ -156,6 +122,7 @@
         {{-- end main  --}}
 
         <!-- ======= Sidebar ======= -->
+        @if (Auth::user()->role_id == 1)
         <aside id="sidebar" class="sidebar">
             <ul class="sidebar-nav" id="sidebar-nav">
                 <li class="nav-item">
@@ -268,7 +235,55 @@
                 </li>
                 <!-- End Login Page Nav -->
             </ul>
-        </aside>
+        </aside> 
+        @elseif (Auth::user()->role_id == 2)
+        <aside id="sidebar" class="sidebar">
+            <ul class="sidebar-nav" id="sidebar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">
+                        <i class="bi bi-grid"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <!-- End Dashboard Nav -->
+
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link collapsed"
+                        data-bs-target="#forms-nav"
+                        data-bs-toggle="collapse"
+                        href="#"
+                    >
+                        <i class="bi bi-journal-text"></i><span>Data Persagi</span
+                        ><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul
+                        id="forms-nav"
+                        class="nav-content collapse"
+                        data-bs-parent="#sidebar-nav"
+                    >
+                        <li>
+                            <a href="forms-layouts.html">
+                                <i class="bi bi-circle"></i
+                                ><span>Permintaan Surat</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- End Forms Nav -->
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="{{ route('logout') }}">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+                <!-- End Login Page Nav -->
+            </ul>
+        </aside>    
+        @endif
+
         <!-- End Sidebar-->
 
         <!-- ======= Footer ======= -->

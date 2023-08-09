@@ -383,8 +383,8 @@
                             </div>
 
                             <div class="row">
-                                <div class="col col-md-4 label">Alamat Tempat Tinggal</div>
-                                <div class="col col-md-8">{{ $data->alamat_tinggal }}</div>
+                                <div class="col col-md-4 label">Status Anggota</div>
+                                <div class="col col-md-8">{{ ($data->status == 0 ? 'Anggota Baru' : 'Anggota Lama') }}</div>
                             </div>
 
 
@@ -529,6 +529,14 @@
                                         <input name="alamat_tinggal" type="text" class="form-control"
                                             id="alamat_tinggal" value="{{ $data->alamat_tinggal }}">
                                     </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="status" class="col-md-4 col-lg-3 col-form-label">Status Amggota</label>
+                                        <select name="status" class="form-control" required="required">
+                                                <option value="0">Anggota Baru</option>
+                                                <option value="1">Anggota Lama</option>
+                                            </select>
                                 </div>
 
                                 <div class="text-center">

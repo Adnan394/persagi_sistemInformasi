@@ -106,6 +106,7 @@ class DaftarAnggotaController extends Controller
     $data = [
         'user_id' => $request->user_id,
         'gambar' => $path . "/" . $file->getClientOriginalName(),
+        'status' => $request->status,
         'nama' => $request->nama,
         'tempat_lahir' => $request->tempat_lahir,
         'tanggal_lahir' => $request->tanggal_lahir,
