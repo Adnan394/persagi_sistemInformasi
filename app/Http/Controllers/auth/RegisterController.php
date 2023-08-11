@@ -20,12 +20,12 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'username' => 'required|max:255',
             'role_id' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:8',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('register');
+            return redirect()->route('register.index')->withErrors($validator, 'register');
         }
 
         User::create([
