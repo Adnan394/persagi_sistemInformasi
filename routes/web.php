@@ -14,7 +14,7 @@ use App\Http\Controllers\auth\ChangePasswordController;
 use App\Http\Controllers\dataSuratController;
 use App\Models\suratRekomendasi;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\KontakUser;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,8 +36,9 @@ Route::prefix('/admin')->middleware('auth')->group(function() {
     Route::resource('akunAnggota', AkunAnggotaController::class);
     Route::resource('daftarAnggota', DaftarAnggotaController::class);
     Route::resource('konsultasi', KonsultasiController::class);
-    Route::resource('event', EventController::class);
     Route::resource('dataSurat', dataSuratController::class);
+    Route::resource('kontak', KontakUser::class);    
+    Route::resource('event', EventController::class);   
 });
 Route::resource('userAnggota', UserAnggotaController::class);
 Route::resource('surat', ReqSuratController::class);

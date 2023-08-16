@@ -6,7 +6,7 @@
         <div class="pagetitle">
             <div class="d-flex justify-content-between mx-2">
                 <h1>Data Event</h1>
-                <a href="{{ route('event.create') }}" class="btn btn-primary">Tambah Artikel</a>
+                <a href="{{ route('event.create') }}" class="btn btn-primary">Tambah Event</a>
             </div>
             <nav class="ms-2">
                 <ol class="breadcrumb">
