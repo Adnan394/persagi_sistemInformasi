@@ -193,7 +193,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="forms-layouts.html">
+                            <a href="{{ route('dataSurat.index') }}">
                                 <i class="bi bi-circle"></i
                                 ><span>Permintaan Surat</span>
                             </a>
@@ -277,9 +277,15 @@
                         data-bs-parent="#sidebar-nav"
                     >
                         <li>
-                            <a href="forms-layouts.html">
+                            <a href="{{ route('surat.index') }}">
                                 <i class="bi bi-circle"></i
                                 ><span>Permintaan Surat</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/historySurat">
+                                <i class="bi bi-circle"></i
+                                ><span>History Surat</span>
                             </a>
                         </li>
                     </ul>
