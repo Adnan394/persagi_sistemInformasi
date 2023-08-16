@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\SuratController;
+use App\Http\Controllers\ReqSuratController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\KonsultasiController;
@@ -11,6 +11,9 @@ use App\Http\Controllers\UserAnggotaController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\daftarAnggotaController;
 use App\Http\Controllers\auth\ChangePasswordController;
+use App\Http\Controllers\dataSuratController;
+use App\Models\suratRekomendasi;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,11 +36,15 @@ Route::prefix('/admin')->middleware('auth')->group(function() {
     Route::resource('akunAnggota', AkunAnggotaController::class);
     Route::resource('daftarAnggota', DaftarAnggotaController::class);
     Route::resource('konsultasi', KonsultasiController::class);
-    Route::resource('event', EventController::class);    
-    // Route::resource('changePassword', ChangePasswordController::class);
+    Route::resource('event', EventController::class);
+    Route::resource('dataSurat', dataSuratController::class);
 });
 Route::resource('userAnggota', UserAnggotaController::class);
-Route::resource('surat', SuratController::class);
+Route::resource('surat', ReqSuratController::class);
+Route::get('historySurat', function() {
+    $data = suratRekomendasi::where('user_id', Auth::user()->id)->get();
+    return view('anggota.surat.history', ['data'=>$data]);
+});
 
 Route::resource('/register', RegisterController::class);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
