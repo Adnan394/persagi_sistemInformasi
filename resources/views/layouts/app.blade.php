@@ -230,6 +230,12 @@
                                 ><span>Data Artikel</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('kontak.index') }}">
+                                <i class="bi bi-circle"></i
+                                ><span>Data Feedback</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <!-- End Tables Nav -->
@@ -307,6 +313,8 @@
             class="back-to-top d-flex align-items-center justify-content-center"
             ><i class="bi bi-arrow-up-short"></i
         ></a>
+
+                
 
         <!-- Vendor JS Files -->
         <script src="{{  asset('assets/vendor/apexcharts/apexcharts.min.js')}}"></script>

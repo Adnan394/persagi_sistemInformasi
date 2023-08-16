@@ -9,6 +9,7 @@ use App\Http\Controllers\daftarAnggotaController;
 use App\Http\Controllers\auth\ChangePasswordController;
 use App\Http\Controllers\KonsultasiController;
 use App\Http\Controllers\UserAnggotaController;
+use App\Http\Controllers\KontakUser;
 use App\Http\Controllers\EventController;
 
 /*
@@ -32,6 +33,7 @@ Route::prefix('/admin')->middleware('auth')->group(function() {
     Route::resource('akunAnggota', AkunAnggotaController::class);
     Route::resource('daftarAnggota', DaftarAnggotaController::class);
     Route::resource('konsultasi', KonsultasiController::class);
+    Route::resource('kontak', KontakUser::class);    
     Route::resource('event', EventController::class);    
     // Route::resource('changePassword', ChangePasswordController::class);
 });
