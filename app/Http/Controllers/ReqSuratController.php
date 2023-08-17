@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\suratKredensial;
 use App\Models\suratRekomendasi;
 use App\Models\suratSTR;
 use Illuminate\Http\Request;
@@ -83,7 +84,7 @@ class ReqSuratController extends Controller
                 'biaya_administrasi' => $path_biaya . "/" . $file_biaya->getClientOriginalName(),
                 'periode_sik' => $request->periode_sik,
             ]);
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Surat anda Berhasil dibuat');
         }
 
         if ($request->jenis_surat == "str") {
@@ -110,7 +111,21 @@ class ReqSuratController extends Controller
                 'no_telp' => $request->no_telp,
             ]);
 
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Surat anda Berhasil dibuat');
+        }
+
+        if ($request->jenis_surat == "kredensial") {
+            // surat kredensial
+            $path_kredensial = 'Kredensial/surat_kredensial'; 
+            $file_kredensial = $request->file('surat_kredensial');
+            Storage::putFileAs($path_kredensial, $file_kredensial, $file_kredensial->getClientOriginalName());
+
+            suratKredensial::create([
+                'user_id' => Auth::user()->id,
+                'surat_kredensial' => $request->surat_kredensial
+            ]);
+
+            return redirect()->back()->with('success', 'Surat anda Berhasil dibuat');
         }
     }
 

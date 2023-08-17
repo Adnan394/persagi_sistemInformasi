@@ -89,6 +89,24 @@
                     </div>
                 </div>
             </div>
+            @elseif($jenis_surat == 'kredensial')
+            <div class="card p-5">
+                <h3>Detail Permohonan Surat</h3>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <p><strong>Nama</strong></p>
+                            <p><strong>Upload Kredensial</strong></p>
+                        </div>
+                        <div class="col">
+                            <p>{{ \App\Models\User::where('id', $kredensial->user_id)->first()->name }}</p>
+                            <p>
+                                <a target="_blank" href="/storage/{{ $kredensial->surat_kredensial }}">Lihat upload Kredensial</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             @endif
         </div>
     </main>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\suratKredensial;
 use Illuminate\Http\Request;
 use App\Models\suratRekomendasi;
 use App\Models\suratSTR;
@@ -18,9 +19,11 @@ class dataSuratController extends Controller
     {
         $rekomendasi = suratRekomendasi::all();
         $str = suratSTR::all();
+        $kredensial = suratKredensial::all();
         return view('admin.surat.index', [
             'rekomendasi' => $rekomendasi,
             'str' => $str,
+            'kredensial' => $kredensial,
         ]);
     }
 
@@ -65,6 +68,13 @@ class dataSuratController extends Controller
             return view('admin.surat.show', [
                 'jenis_surat' => 'str',
                 'str' => $str,
+            ]);
+        }
+        if ($request->jenis_surat=="kredensial") {
+            $kredensial = suratKredensial::where('id', $id)->first();
+            return view('admin.surat.show', [
+                'jenis_surat' => 'kredensial',
+                'kredensial' => $kredensial,
             ]);
         }
     }
@@ -116,6 +126,19 @@ class dataSuratController extends Controller
             suratSTR::where('id', $id)->update($data);
             return redirect()->back();
         }
+        if ($request->jenis_surat == 'kredensial') {
+            $path_surat = 'Kredensial/Surat_jadi'; 
+            $file_surat = $request->file('surat_jadi');
+            Storage::putFileAs($path_surat, $file_surat, $file_surat->getClientOriginalName());
+    
+            $data = [
+                'is_complete' => 1,
+                'surat_jadi' => $path_surat . "/" . $file_surat->getClientOriginalName(),
+            ];
+    
+            suratKredensial::where('id', $id)->update($data);
+            return redirect()->back();
+        }
     }
 
     /**
@@ -132,6 +155,10 @@ class dataSuratController extends Controller
         }
         if ($request->jenis_surat == 'str') {
             suratSTR::where('id', $id)->delete();
+            return redirect()->back();
+        }
+        if ($request->jenis_surat == 'kredensial') {
+            suratKredensial::where('id', $id)->delete();
             return redirect()->back();
         }
     }

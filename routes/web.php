@@ -15,6 +15,9 @@ use App\Http\Controllers\dataSuratController;
 use App\Models\suratRekomendasi;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\KontakUser;
+use App\Models\suratKredensial;
+use App\Models\suratSTR;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,8 +46,14 @@ Route::prefix('/admin')->middleware('auth')->group(function() {
 Route::resource('userAnggota', UserAnggotaController::class);
 Route::resource('surat', ReqSuratController::class);
 Route::get('historySurat', function() {
-    $data = suratRekomendasi::where('user_id', Auth::user()->id)->get();
-    return view('anggota.surat.history', ['data'=>$data]);
+    $rekomendasi = suratRekomendasi::where('user_id', Auth::user()->id)->get();
+    $str = suratSTR::where('user_id', Auth::user()->id)->get();
+    $kredensial = suratKredensial::where('user_id', Auth::user()->id)->get();
+    return view('anggota.surat.history', [
+        'rekomendasi'=>$rekomendasi,
+        'str' => $str,
+        'kredensial' => $kredensial,
+    ]);
 });
 
 Route::resource('/register', RegisterController::class);

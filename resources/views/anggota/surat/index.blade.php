@@ -2,6 +2,10 @@
 
 @section('content')
 <main id="main">
+    {{-- modal  --}}
+    @if (Session::has('success'))
+        <x-req-surat-modal />
+    @endif
     <div class="container">
         <div class="pagetitle">
             <div class="d-flex justify-content-between mx-2">
@@ -118,7 +122,7 @@
           <section id="kredensial" class="d-none">
             <div class="card my-3 p-5">
                 <h3>Surat Permohonan Kredensial</h3>
-                <form action="{{ route('surat.store') }}" method="POST">
+                <form action="{{ route('surat.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="jenis_surat" value="kredensial">
                     <div class="mb-3">
@@ -183,5 +187,9 @@
             `);
         }
     });
+
+    $(document).ready(function() {
+        $("#success").modal('show');
+    })
 </script>
 @endsection

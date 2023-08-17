@@ -157,6 +157,72 @@
                     </tbody>
                 </table>
             </div>
+            <div class="d-none" id="kredensial">
+                <table class="table datatable" >
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Surat</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($kredensial as $d)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <th scope="row">Kredensial</th>
+                            <td>{{ \App\Models\User::where('id', $d->user_id)->first()->name }}</td>
+                            <td><h6><span class="badge {{ ($d->is_complete == 0) ? 'bg-danger' : 'bg-success' }}">{{ ($d->is_complete == 0) ? 'File Belum dibuat' : 'Selesai' }}</span></h6></td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <a data-bs-toggle="modal" data-bs-target="#uploadKredensial{{ $d->id }}" class="btn btn-primary"><i class="bi bi-upload"></i></a>
+                                    <form action="{{ route('dataSurat.show', $d->id) }}" method="GET">
+                                        @csrf
+                                        <input type="hidden" name="jenis_surat" value="kredensial">
+                                        <button type="submit" class="btn btn-primary"><i class="bi bi-eye"></i></button>
+                                    </form>
+                                    <form action="{{ route('dataSurat.destroy', $d->id) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <input type="hidden" name="jenis_surat" value="kredensial">
+                                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+    
+                        {{-- modal upload  --}}
+                        <div class="modal fade" id="uploadKredensial{{ $d->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <h4 class="px-5 text-center mb-5"><strong>Kirimkan Surat Permohonan!</strong></h4>
+                                    <form action="{{ route('dataSurat.update', $d->id) }}" method="POST" enctype="multipart/form-data">
+                                        @method('PUT')
+                                        @csrf
+                                        <input type="hidden" name="jenis_surat" value="kredensial">
+                                        <div class="mb-3">
+                                            <label for="#title" class="form-label">Upload Surat</label>
+                                            <input type="file" class="form-control" name="surat_jadi" required>
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">Batal</button>
+                                  <button class="btn btn-primary" type="submit">Lanjutkan</button>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 @endsection
