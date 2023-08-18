@@ -198,6 +198,12 @@
                                 ><span>Permintaan Surat</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('dataKas.index') }}">
+                                <i class="bi bi-circle"></i
+                                ><span>Data Kas Anggota</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <!-- End Forms Nav -->
@@ -286,6 +292,12 @@
                             <a href="/historySurat">
                                 <i class="bi bi-circle"></i
                                 ><span>History Surat</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('kas.index') }}">
+                                <i class="bi bi-circle"></i
+                                ><span>Kas Anggota</span>
                             </a>
                         </li>
                     </ul>

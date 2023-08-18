@@ -1,9 +1,16 @@
 <?php
 
+use App\Models\suratSTR;
+use App\Models\suratKredensial;
+use App\Models\suratRekomendasi;
+use App\Http\Controllers\KontakUser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KasController;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\ReqSuratController;
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\ReqSuratController;
+use App\Http\Controllers\dataSuratController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\KonsultasiController;
 use App\Http\Controllers\akunAnggotaController;
@@ -11,12 +18,7 @@ use App\Http\Controllers\UserAnggotaController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\daftarAnggotaController;
 use App\Http\Controllers\auth\ChangePasswordController;
-use App\Http\Controllers\dataSuratController;
-use App\Models\suratRekomendasi;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\KontakUser;
-use App\Models\suratKredensial;
-use App\Models\suratSTR;
+use App\Http\Controllers\DataKasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,7 @@ Route::prefix('/admin')->middleware('auth')->group(function() {
     Route::resource('dataSurat', dataSuratController::class);
     Route::resource('kontak', KontakUser::class);    
     Route::resource('event', EventController::class);   
+    Route::resource('dataKas', DataKasController::class);   
 });
 Route::resource('userAnggota', UserAnggotaController::class);
 Route::resource('surat', ReqSuratController::class);
@@ -55,6 +58,8 @@ Route::get('historySurat', function() {
         'kredensial' => $kredensial,
     ]);
 });
+
+Route::resource('/kas', KasController::class);
 
 Route::resource('/register', RegisterController::class);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
