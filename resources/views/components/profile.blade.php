@@ -585,8 +585,6 @@
                                     <button type="submit" class="btn btn-primary">Ubah Password</button>
                                 </div>
                             </form>
-                            
-
                         </div>
 
                     </div><!-- End Bordered Tabs -->
