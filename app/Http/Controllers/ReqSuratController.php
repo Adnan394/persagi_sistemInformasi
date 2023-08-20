@@ -122,7 +122,7 @@ class ReqSuratController extends Controller
 
             suratKredensial::create([
                 'user_id' => Auth::user()->id,
-                'surat_kredensial' => $request->surat_kredensial
+                'surat_kredensial' => $path_kredensial . "/" . $file_kredensial->getClientOriginalName()
             ]);
 
             return redirect()->back()->with('success', 'Surat anda Berhasil dibuat');
