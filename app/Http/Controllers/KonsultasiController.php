@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Konsultasi;
 
 class KonsultasiController extends Controller
 {
@@ -13,7 +14,8 @@ class KonsultasiController extends Controller
      */
     public function index()
     {
-        return view('admin.konsultasi.index');
+        $data = Konsultasi::all();
+        return view('admin.konsultasi.index', ['data' => $data]);
     }
 
     /**

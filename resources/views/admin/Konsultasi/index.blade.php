@@ -5,8 +5,7 @@
     <div class="container mt-5">
         <div class="pagetitle">
             <div class="d-flex justify-content-between mx-2">
-                <h1>Data Artikel</h1>
-                <a href="{{ route('artikel.create') }}" class="btn btn-primary">Tambah Artikel</a>
+                <h1>Data Konsultasi Persagi</h1>
             </div>
             <nav class="ms-2">
                 <ol class="breadcrumb">
@@ -21,20 +20,24 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
+                    <th scope="col">Nama Pemohon</th>
+                    <th scope="col">Nama Pasien</th>
+                    <th scope="col">No Telepon</th>
+                    <th scope='col'>Action</th>
+                    <th scope='col'>Whatsapp</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                </tr>
+                    @foreach ($data as $d)
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $d->nama }}</td>
+                        <td>{{ $d->pasien }}</td>
+                        <td>{{ $d->no_telepon}}</td>
+                        <td>{{ $d->pesan }}</td>                        
+                        <td>{{  \Carbon\Carbon::parse($d->created_at)->format('D, d M Y') }}</td>
+                    </tr>
+                    @endforeach
             </tbody>
         </table>
     </div>
