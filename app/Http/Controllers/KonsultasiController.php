@@ -47,7 +47,8 @@ class KonsultasiController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Konsultasi::where('id', $id)->first();
+        return view('admin.konsultasi.show', ['data' => $data]);
     }
 
     /**
@@ -70,7 +71,8 @@ class KonsultasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Konsultasi::where('id', $id)->update(['is_complete' => 1]);
+        return redirect()->back();
     }
 
     /**
@@ -81,6 +83,7 @@ class KonsultasiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Konsultasi::where('id', $id)->delete();
+        return redirect()->back();
     }
 }
