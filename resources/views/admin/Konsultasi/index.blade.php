@@ -26,6 +26,7 @@
                     <th scope="col">Jadwal Konsultasi</th>
                     <th scope="col">Status</th>
                     <th scope='col'>Action</th>
+                    <th scope='col'>Whatsapp</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,6 +52,9 @@
                                 </form>
                             </div>
                         </td>
+                        <th scope="col">
+                        <a target="_blank" href="https://api.whatsapp.com/send?phone={{$d['no_telepon']}}&text= Halo, saya dari Persagi Karawang. Bagaimana kabarmu apakah bisa dimulai hari ini? :)"><img width="20" src="https://img.icons8.com/ios-glyphs/30/000000/whatsapp.png"></a> <strong> {{ $d['pasien'] }} </strong>
+                        </th>
                     </tr>
                     {{-- modal Aktifasi  --}}
                     <div class="modal fade" id="konsultasi{{ $d->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
