@@ -115,7 +115,7 @@
                                         ></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>$3,264</h6>
+                                        <h6>{{ \App\Models\Konsultasi::where('is_complete', null)->count() }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
                                         ></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>$3,264</h6>
+                                        <h6>{{ \App\Models\Konsultasi::where('is_complete', 1)->count() }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@
                                         ></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>$3,264</h6>
+                                        <h6>{{ App\Models\Konsultasi::all()->count() }}</h6>
                                     </div>
                                 </div>
                             </div>
