@@ -50,6 +50,7 @@ class EventController extends Controller
             'gambar' => $path . "/" . $file->getClientOriginalName(),
             'tanggal' => $request->tanggal,
             'jam' => $request->jam,
+            'vanue' => $request->vanue
         ]);
 
         return redirect()->route('event.index');
@@ -99,6 +100,7 @@ class EventController extends Controller
             'gambar' => $path . "/" . $file->getClientOriginalName(),
             'tanggal' => $request->tanggal,
             'jam' => $request->jam,
+            'vanue' => $request->vanue,
         ];
 
         event::where('id', $id)->update($data);

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('gambar');
             $table->date('tanggal');
             $table->time('jam');
+            $table->string('vanue');
             $table->timestamps();
         });
     }

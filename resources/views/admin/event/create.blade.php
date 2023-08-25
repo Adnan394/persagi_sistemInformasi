@@ -50,6 +50,14 @@
                         <input type="time" class="form-control" id="time" rows="3" name="jam"></input>
                     </div>
                     <div class="mb-3">
+                        <label for="#time" class="form-label">Vanue</label>
+                        <select class="form-select" aria-label="Default select example" name="vanue">
+                            <option selected>Pilih Vanue kegiatan</option>
+                            <option value="online">Online</option>
+                            <option value="offline">Offline</option>
+                          </select>
+                    </div>
+                    <div class="mb-3">
                         <button class="btn btn-primary" type="submit">Simpan</button>
                     </div>
                 </form>

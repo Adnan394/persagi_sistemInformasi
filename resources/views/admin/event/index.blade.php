@@ -25,6 +25,7 @@
                     <th scope="col">Judul</th>
                     <th scope="col">Tanggal</th>
                     <th scope="col">Jam</th>
+                    <th scope="col">Vanue</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -38,6 +39,7 @@
                         <td>{{ $d->judul }}</td>
                         <td>{{  \Carbon\Carbon::parse($d->tanggal)->format('D, d M Y') }}</td>
                         <td>{{ $d->jam}}</td>
+                        <td>{{ $d->vanue}}</td>
                         <td class="d-flex">
                             <a href="{{ route('event.show', $d->slug) }}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
                             <a href="{{ route('event.edit', $d->id) }}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>

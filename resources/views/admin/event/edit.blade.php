@@ -50,6 +50,12 @@
                         <label for="#time" class="form-label">Waktu</label>
                         <input type="time" class="form-control" id="time" rows="3" name="jam" value="{{ $data->jam }}"></input>
                     </div>
+                    <label for="#time" class="form-label">Vanue</label>
+                        <select class="form-select" aria-label="Default select example" name="vanue">
+                            <option value="{{ $data->vanue }}" selected>{{ $data->vanue }}</option>
+                            <option value="online">Online</option>
+                            <option value="offline">Offline</option>
+                          </select>
                     <div class="mb-3">
                         <button class="btn btn-primary" type="submit">Simpan</button>
                     </div>
